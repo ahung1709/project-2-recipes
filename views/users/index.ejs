@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+     <!-- Google Icon Fonts used by Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS Framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper blue darken-3">
+                <a href="" class="brand-logo left">User Recipes</a>
+                <ul class="right hide-on-med-and-down">
+                    <% if (user) { %>
+                        <li><a href="">Your account</a></li>
+                    <% } %>
+                    <li>
+                        <% if (user) { %>
+                            <a href="/logout">
+                                <i class="material-icons left">trending_flat</i>
+                                Log Out
+                            </a>
+                        <% } else { %>
+                            <a href="/auth/google">
+                                <i class="material-icons Left">vpn_key</i>
+                            </a>
+                        <% } %>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+<!-- 
+    <div class="container">
+        <div id="search-row" class="row">
+            <h2 class="col s4 blue-grey-text text-darken-2">Students</h2>
+            <form action="/students" method="GET">
+              <div class="col s3 offset-s3">
+                !-- search --
+                <div class="input-field">
+                  <input id="search" type="search" name="name" placeholder="search name" value="<%= name %>" autocomplete="off">
+                  <i class="material-icons">close</i>
+                </div>
+              </div>
+              <div class="col s2">
+                <p>
+                  <label for="sort-cohort">
+                    <input name="sort" type="radio" id="sort-cohort" value="cohort" class="with-gap"
+                      %= sortKey === 'cohort' ? 'checked' : '' %> >
+                    <span>Sort by Cohort</span>
+                  </label>
+                </p>
+                <p>
+                  <label for="sort-name">
+                    <input name="sort" type="radio" id="sort-name" value="name" class="with-gap"
+                      %= sortKey === 'name' ? 'checked' : '' %> >
+                    <span>Sort by Name</span>
+                  </label>
+                </p>
+              </div>
+            </form>
+        </div>
+    </div>
+     -->
+    <div class="row">
+        <div id="users" class="col s2 green" style="height:100vh">
+            <% if (user) { %>
+            <ul class="collection">
+                <li class="collection-item"><a href="">Dashboard</a></li>
+                <li class="collection-item"><a href="">Profile</a></li>
+                <li class="collection-item"><a href="">Collection</a></li>
+                <li class="collection-item"><a href="">Recipes</a></li>
+                <li class="collection-item"><a href="">Comments</a></li>
+            </ul>
+            <% } %>
+        </div>
+        <div class="col s10 green" style="height:100%">
+
+        </div>
+    </div>
+</body>
+</html>
