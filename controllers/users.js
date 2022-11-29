@@ -73,6 +73,7 @@ function showRecipes(req, res, next) {
     //     console.log(`Before running res.render('users/index')`)
     //     console.log(`req.user is: ${req.user} ; !req.user is: ${!req.user}`)
     // User.find({}).exec(function(err, users) {
+        
         if (!req.user) {
             // console.log(`No user`)
             res.redirect(`/`)
