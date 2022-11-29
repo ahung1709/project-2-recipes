@@ -1,0 +1,24 @@
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper blue darken-3">
+            <a href="" class="brand-logo left">User Recipes</a>
+            <ul class="right hide-on-med-and-down">
+                <% if (user) { %>
+                    <li><a href="">Your account</a></li>
+                <% } %>
+                <li>
+                    <% if (user) { %>
+                        <a href="/logout">
+                            <i class="material-icons left">trending_flat</i>
+                            Log Out
+                        </a>
+                    <% } else { %>
+                        <a href="/auth/google">
+                            <i class="material-icons Left">vpn_key</i>
+                        </a>
+                    <% } %>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

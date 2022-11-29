@@ -3,16 +3,25 @@
 
 var router = require('express').Router();
 const passport = require('passport')
+const indexesCtrl = require('../controllers/indexes')
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });
 // });
 
+// route to index controller
+router.get('/', indexesCtrl.index)
+
+// index view
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Recipers'})
+// })
+
 // The root route renders our only view
-router.get('/', function(req, res) {
-  res.redirect('/users');
-})
+// router.get('/', function(req, res) {
+//   res.redirect('/index');
+// })
 
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(
@@ -24,15 +33,15 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/users', 
-    failureRedirect : '/users'
+    successRedirect : '/user', 
+    failureRedirect : '/user'
   }
 ))
 
 // OAuth logout route
 router.get('/logout', function(req, res) {
   req.logout(function(err) {
-    res.redirect('/users');
+    res.redirect('/');
   });
 })
 

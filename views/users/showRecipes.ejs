@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="row blue-grey lighten-2">
+    <%- include('../partials/sidenav') %>
+    <div class="col s10 blue lighten-4" style="height:100vh">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="/user/<%= user.id %>/recipes/new"><i class="material-icons">add</i></a>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
