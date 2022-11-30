@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
+let methodOverride = require('method-override')
 var cookieParser = require('cookie-parser');
 // require Session middleware
 var session = require('express-session')
@@ -28,6 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // set urlencoded to true
@@ -44,7 +46,7 @@ app.use(passport.session())
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
-app.use('/', usersRouter);
+app.use('/user', usersRouter);
 app.use('/', recipesRouter)
 // app.use('/users/recipes', )
 // app.use('/user/:id/recipes', recipesRouter);

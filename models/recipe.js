@@ -13,7 +13,7 @@ const recipeSchema = new Schema({
     cookTime: {type: Number}, 
     notes: {type: String},
     private: {type: Boolean, default: false}, 
-    createByUserId: {type: Schema.Types.ObjectId, ref: 'User'}
+    createdByUserId: {type: Schema.Types.ObjectId, ref: 'User'}
 }, {
     timestamps: true
 })

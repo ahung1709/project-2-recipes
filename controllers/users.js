@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Recipe = require('../models/recipe')
 
 module.exports = {
     index, 
@@ -37,10 +38,8 @@ function index(req, res, next) {
         // console.log(`outside getLocals - req.user is: ${req.user} ; !req.user is: ${!req.user}`)
 
         // console.log(`outside getLocals - objLocals is: ${objLocals}`)
-        if (!req.user) {
-            console.log(`No user`)
-            res.redirect(`/`);
-        }
+        if (!req.user) res.redirect(`/`)
+
         res.render('users/index', 
         // {
             // users, 
@@ -73,12 +72,19 @@ function showRecipes(req, res, next) {
     //     console.log(`Before running res.render('users/index')`)
     //     console.log(`req.user is: ${req.user} ; !req.user is: ${!req.user}`)
     // User.find({}).exec(function(err, users) {
+    // User.findById(req.params.id, function(err, user) {
         
-        if (!req.user) {
-            // console.log(`No user`)
-            res.redirect(`/`)
-        }
-        res.render('users/showRecipes', {user: req.user})
+    if (!req.user) res.redirect(`/`)
+
+    User.findById(req.user.id, function(err, user) {
+        Recipe.find({createdByUserId:user._id}, function(err, recipes) {
+            // if (!req.user) {
+            //     // console.log(`No user`)
+            //     res.redirect(`/`)
+            // }
+            res.render('users/showRecipes', {user: req.user, user, recipes})
+        })
+    })
     // })
 
         // let objLocals = getLocals(req, res, next)
@@ -95,6 +101,14 @@ function showRecipes(req, res, next) {
 }
 
 // == Helper function ==
+
+// function isLoggedIn(user) {
+//     if (!user) {
+//         console.log(`No user`)
+//         res.redirect(`/`);
+//     }
+// }
+
 // function getLocals(req, res, next, objLocals) {
 //     console.log(`req.query is: ${req.query}`)
 //     // Make the query object to use with User.find based up

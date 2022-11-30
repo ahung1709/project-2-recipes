@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="row">
+    
+    <a class="btn-floating btn-large waves-effect waves-light red" href="/recipes/<%= recipe.id %>/edit"><i class="material-icons" >edit</i></a>
+    <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST" class="waves-effect">
+        <button class="btn-floating btn-large waves-effect waves-light red">
+            <i class="material-icons">delete</i>
+        </button>
+    </form>
+    <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" href="">delete_forever</i></a> -->
+    
+    <div class="input-field col s6">
+        <h5 class="blue-text text-darken-2"><%= recipe.title %></h5>
+        <h6 class="blue-text text-darken-2"><%= recipe.desc %></h6>       
+        <div><%- `Pictures: ${recipe.pictures} ` %></div>
+        <div>Meals: <%= recipe.meals %></div>
+        <div>Ingredients: <%= recipe.ingredients %></div>
+        <div>Directions: <%= recipe.directions %></div>
+        <div>Servings: <%= recipe.servings %></div>
+        <div>Prep time: <%= Math.floor(recipe.prepTime/60) %> hr <%= recipe.prepTime%60 %> min</div>
+        <div>Cook time: <%= Math.floor(recipe.cookTime/60) %> hr <%= recipe.cookTime%60 %> min  %></div>
+        <div>Private: <%= recipe.private %></div>
+        <div>Created by user ID: <%= recipe.createdByUserId %></div>
+        <div>Created at: <%= recipe.createdAt %></div>
+        <div>Updated at: <%= recipe.updatedAt %></div>
+    </div>
+
+</div>
+
+<%- include('../partials/footer') %>

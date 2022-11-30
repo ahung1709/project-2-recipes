@@ -1,11 +1,14 @@
 
     <div id="users" class="col s2">
         <% if (user) { %>
+        <h5><%= user.name %></h5>
+        <h6><%= user.id %></h5>
         <ul class="collection">
             <li class="collection-item"><a href="/user/">Dashboard</a></li>
             <li class="collection-item"><a href="">Profile</a></li>
             <li class="collection-item"><a href="">Collection</a></li>
-            <li class="collection-item"><a href="/user/recipes">Recipes <%= user.id %></a></li>
+            <li class="collection-item"><a href="/user/recipes">Recipes</a></li>
+            <!-- /%= user.id %> -->
             <!-- %= user.id%>/ -->
             <li class="collection-item"><a href="">Comments</a></li>
         </ul>
