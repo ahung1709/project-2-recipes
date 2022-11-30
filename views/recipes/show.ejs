@@ -25,8 +25,58 @@
         <div>Created by user ID: <%= recipe.createdByUserId %></div>
         <div>Created at: <%= recipe.createdAt %></div>
         <div>Updated at: <%= recipe.updatedAt %></div>
+        <br>
+        <div>Review:</div>
+        <div>
+            <a href="">Add Review</a>
+            <form action="/reviews" method="POST" class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <textarea name="content" id="content" class="materialize-textarea" data-length="500"></textarea>
+                        <label for="content">Content: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <div class="input-field col s6">
+                        <input placeholder="5" id="rating" type="text" class="validate"><span>min: 1 - max: 5</span>
+                        <label for="rating">Rating: </label>
+                        
+                        <textarea name="rating" id="rating" class="materialize-textarea" data-length="500"></textarea>
+                        <label for="rating">Rating: </label>
+                    </div> -->
+                    <div class="input-field col s5">
+                        <select name="rating">
+                          <option value="" disabled selected>Choose your rating</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                        <label>Rating: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>
+                        <label>
+                          <input name="liked" type="checkbox" class="filled-in" />
+                          <!--checked="checked"-->
+                          <span>Liked</span>
+                        </label>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div>
+            <% if(!reviews.length) { %>
+                <div>No review yet</div>
+            <% } else { %>
+                <%- reviews.map(r => 
+                    `<div>${r.content}</div><div>${r.rating}</div><div>${r.liked}</div><div>${r.recipeId}</div><div>${r.createdByUserId}</div>`
+                ).join('') %>
+            <% } %>
+        </div>
     </div>
-
 </div>
 
 <%- include('../partials/footer') %>

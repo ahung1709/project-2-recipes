@@ -1,4 +1,5 @@
 const Recipe = require('../models/recipe') 
+const Review = require('../models/review') 
 const User = require('../models/user')
 
 module.exports = {
@@ -47,8 +48,10 @@ function show(req, res) {
     if (!req.user) res.redirect(`/`)
 
     Recipe.findById(req.params.id, function(err,recipe) {
-        // console.log(`inside controllers-recipes-show recipe is: ${recipe}`)
-        res.render('recipes/show', {user: req.user, recipe})
+        Review.find({recipeId: recipe._id}, function(err, reviews) {
+            // console.log(`inside controllers-recipes-show recipe is: ${recipe}`)
+            res.render('recipes/show', {user: req.user, recipe, reviews})
+        })
     })
 }
 

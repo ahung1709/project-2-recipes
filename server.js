@@ -23,6 +23,7 @@ require('./config/passport')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var recipesRouter = require('./routes/recipes')
+// var reviewsRouter = require('./routes/reviews')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,7 +48,8 @@ app.use(passport.session())
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/user', usersRouter);
-app.use('/', recipesRouter)
+// app.use('/reviews', reviewsRouter)
+app.use('/recipes', recipesRouter)
 // app.use('/users/recipes', )
 // app.use('/user/:id/recipes', recipesRouter);
 
