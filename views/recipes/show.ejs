@@ -28,8 +28,9 @@
         <br>
         <div>Review:</div>
         <div>
-            <a href="">Add Review</a>
-            <form action="/reviews" method="POST" class="col s12">
+            <!-- <a href="">Add Review</a> -->
+            "/recipes/<%= recipe.id %>/reviews"
+            <form action="/recipes/<%= recipe.id %>/reviews" method="POST" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
                         <textarea name="content" id="content" class="materialize-textarea" data-length="500"></textarea>
@@ -52,8 +53,9 @@
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select>
+                        </select> 
                         <label>Rating: </label>
+                        <!-- <span class="red-text">* required</span> -->
                     </div>
                 </div>
                 <div class="row">
@@ -64,6 +66,12 @@
                           <span>Liked</span>
                         </label>
                     </p>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">  
+                        <p></p>
+                        <input type="submit" value="Add Review">
+                    </div>
                 </div>
             </form>
         </div>
