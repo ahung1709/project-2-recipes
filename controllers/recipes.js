@@ -109,7 +109,7 @@ function update(req, res) {
     Recipe.findById(req.params.id, function(err, recipe) {
         recipe.title = req.body.title
         recipe.desc = req.body.desc
-        recipe.pictures = req.body.pictures
+        recipe.coverPicture = req.body.coverPicture
         recipe.meals = req.body.meals
         recipe.ingredients = req.body.ingredients
         recipe.directions = req.body.directions
