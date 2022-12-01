@@ -6,29 +6,30 @@
     <%- include('../partials/sidenav') %>
 
     <div id="users" class="col s10 blue lighten-4">
-        <% if(!user) { %>
+        <% if(!user || recipe.createdByUserId != user.id) { %>
+            <!-- No button for edit or delete if there is no user or the recipe is not owned by the user -->
             <!-- recipeViewOnly -->
-        <% } else { %>
-            <div class="row">
-                <div class="input-field col s6">
-                    <a class="waves-effect waves-light btn-medium" href="/user/recipes">
-                        <!-- <i class="material-icons" >arrow_back</i> -->
-                        <div class="valign-wrapper">
-                            <i class="material-icons" >arrow_back</i>&nbsp Back to My Recipes
-                        </div>
-                    </a>
+        <% } else { %><!-- The recipe is owned by the user, so it can be edited or deleted -->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn-medium" href="/user/recipes">
+                            <!-- <i class="material-icons" >arrow_back</i> -->
+                            <div class="valign-wrapper">
+                                <i class="material-icons" >arrow_back</i>&nbsp Back to My Recipes
+                            </div>
+                        </a>
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="btn-small waves-effect waves-light right-align" href="/recipes/<%= recipe.id %>/edit">Edit this recipe</a>
+                        <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST" class="waves-effect">
+                            <button class="btn-small waves-effect waves-light red">
+                                Delete this recipe
+                            </button>
+                        </form>
+                        <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" href="">delete_forever</i></a> -->
+        
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <a class="btn-small waves-effect waves-light right-align" href="/recipes/<%= recipe.id %>/edit">Edit this recipe</a>
-                    <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST" class="waves-effect">
-                        <button class="btn-small waves-effect waves-light red">
-                            Delete this recipe
-                        </button>
-                    </form>
-                    <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" href="">delete_forever</i></a> -->
-    
-                </div>
-            </div>
         <% } %>
 
         <!-- % } %> -->
@@ -65,8 +66,7 @@
                     <!-- %- reviews.find(rev => rev["createdByUserId"] == user.id ) %> -->
                     
                     <!-- -->
-                    <% if(!user) { %>
-
+                    <% if(!user || recipe.createdByUserId == user.id) { %>
                         <div>
                             <!-- % if(!reviews.length) { %> -->
                                 <!-- <div>No review yet</div> -->
@@ -86,7 +86,7 @@
                             <% } %>
                         </div>
 
-                    <% } else { %>
+                    <% } else { %> <!-- There is a user -->
                         
                         <% if(!userReview) { %>
                             <%- `<div>You do not have review on this recipe yet.  <br>Leave one, and share your experience!</div>` %>
