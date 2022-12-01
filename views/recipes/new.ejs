@@ -3,9 +3,20 @@
 
 <div class="row blue-grey lighten-2">
     <%- include('../partials/sidenav') %>
+    <div id="users" class="col s10 blue lighten-4">
+        <div class="row">
+            <div class="input-field col s6">
+                <a class="waves-effect waves-light btn-medium" href="/user/recipes">
+                    <div class="valign-wrapper">
+                        <i class="material-icons" >arrow_back</i>&nbsp Back to My Recipes
+                    </div>
+                </a>
+                <h5 class="blue-text text-darken-2">Add New Recipe</h1>
+            </div>
+        </div>
+    </div>
     <div class="col s10 blue lighten-4" >
         <div class="row">   
-            <h5 class="blue-text text-darken-2">Add new recipe</h1>
             <form action="/recipes" method="POST" class="col s12">
                 <!-- /user/%= user.id %> -->
                 <div class="row">
@@ -76,7 +87,7 @@
                     <div class="input-field col s6">  
                         <p></p>
                         <a href="/user/recipes">Cancel</a>&nbsp&nbsp&nbsp&nbsp
-                        <input type="submit" value="Add Recipe">
+                        <input type="submit" value="Add Recipe" class="waves-effect waves-light btn-small cyan">
                     </div>
                 </div>
             </form>

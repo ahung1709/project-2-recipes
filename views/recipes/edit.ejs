@@ -2,13 +2,25 @@
 <%- include('../partials/navbar') %>
 
 <div class="row blue-grey lighten-2">
-    <div class="col s12 blue lighten-4" >
+    <%- include('../partials/sidenav') %>
+    <div id="users" class="col s10 blue lighten-4">
         <div class="row">
-            <h5 class="blue-text text-darken-2">Edit Recipe</h5>
+            <div class="input-field col s6">
+                <a class="waves-effect waves-light btn-medium" href="/recipes/<%= recipe.id %>">
+                    <div class="valign-wrapper">
+                        <i class="material-icons" >arrow_back</i>&nbsp Back to Recipe
+                    </div>
+                </a>
+                <h5 class="blue-text text-darken-2">Edit Recipe</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col s10 blue lighten-4" >
+        <div class="row">
             <form action="/recipes/<%= recipe.id %>?_method=PUT" method="POST" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input value="<%= recipe.title %>" name="title" id="title" type="text" class="validate">  
+                        <input value="<%= recipe.title %>" name="title" id="title" type="text" class="validate">
                         <label for="title" >Title: </label>
                     </div>
                 </div>
@@ -74,7 +86,7 @@
                     <div class="input-field col s6">  
                         <p></p>
                         <a href="/recipes/<%= recipe.id %>">Cancel</a>&nbsp&nbsp&nbsp&nbsp
-                        <input type="submit" value="Update Recipe">
+                        <input type="submit" value="Update Recipe" class="waves-effect waves-light btn-small cyan">
                     </div>
                 </div>
             </form>

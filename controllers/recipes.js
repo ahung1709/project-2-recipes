@@ -1,5 +1,6 @@
 const Recipe = require('../models/recipe') 
 const Review = require('../models/review') 
+// const user = require('../models/user')
 const User = require('../models/user')
 
 module.exports = {
@@ -13,7 +14,7 @@ module.exports = {
 }
 
 function index(req, res, next) {
-
+    res.render('recipes/index', {user: req.user})
 }
 
 function newRecipe(req, res, next) {
@@ -48,9 +49,21 @@ function show(req, res) {
     if (!req.user) res.redirect(`/`)
 
     Recipe.findById(req.params.id, function(err,recipe) {
+        console.log(`inside controllers-recipes-show typeof Reviews is: ${typeof Review}`)
         Review.find({recipeId: recipe._id}, function(err, reviews) {
             // console.log(`inside controllers-recipes-show recipe is: ${recipe}`)
-            res.render('recipes/show', {user: req.user, recipe, reviews})
+            console.log(`inside controllers-recipes-show reviews is: ${typeof reviews}`)
+            // reviews.find({createdByUserId: req.user.id}, function(err, review) {
+            console.log(`inside controllers-recipes req.user.id is: ${req.user.id}`)
+            
+            let userReview = reviews.find(rev => rev["createdByUserId"] == req.user.id )
+            let otherReviews = reviews.filter(rev => rev["createdByUserId"] != req.user.id )
+            
+            console.log(`inside controllers-recipes userReview of type ${typeof userReview} is: ${userReview}`)
+            console.log(`inside controllers-recipes otherReviews of type ${typeof otherReviews} is: ${otherReviews}`)
+                // reviews.find(rev => rev["createdByUserId"] == user.id )
+            res.render('recipes/show', {user: req.user, recipe, reviews, userReview, otherReviews})
+            // })
         })
     })
 }

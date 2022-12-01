@@ -46,10 +46,10 @@ app.use(passport.session())
 
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
+app.use('/recipes', recipesRouter)
 app.use('/', reviewsRouter)
 // app.use('/users', usersRouter);
 app.use('/user', usersRouter);
-app.use('/recipes', recipesRouter)
 // app.use('/users/recipes', )
 // app.use('/user/:id/recipes', recipesRouter);
 

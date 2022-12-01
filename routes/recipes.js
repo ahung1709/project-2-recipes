@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var recipesCtrl = require('../controllers/recipes')
 
+router.get('/', recipesCtrl.index)
+
 router.get('/new', recipesCtrl.new)
 // router.get('/recipes/new', recipesCtrl.new)
 // :id/

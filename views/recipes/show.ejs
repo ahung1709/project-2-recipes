@@ -1,88 +1,150 @@
 <%- include('../partials/header') %>
 <%- include('../partials/navbar') %>
 
-<div class="row">
-    
-    <a class="btn-floating btn-large waves-effect waves-light red" href="/recipes/<%= recipe.id %>/edit"><i class="material-icons" >edit</i></a>
-    <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST" class="waves-effect">
-        <button class="btn-floating btn-large waves-effect waves-light red">
-            <i class="material-icons">delete</i>
-        </button>
-    </form>
-    <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" href="">delete_forever</i></a> -->
-    
-    <div class="input-field col s6">
-        <h5 class="blue-text text-darken-2"><%= recipe.title %></h5>
-        <h6 class="blue-text text-darken-2"><%= recipe.desc %></h6>       
-        <div><%- `Pictures: ${recipe.pictures} ` %></div>
-        <div>Meals: <%= recipe.meals %></div>
-        <div>Ingredients: <%= recipe.ingredients %></div>
-        <div>Directions: <%= recipe.directions %></div>
-        <div>Servings: <%= recipe.servings %></div>
-        <div>Prep time: <%= Math.floor(recipe.prepTime/60) %> hr <%= recipe.prepTime%60 %> min</div>
-        <div>Cook time: <%= Math.floor(recipe.cookTime/60) %> hr <%= recipe.cookTime%60 %> min  %></div>
-        <div>Private: <%= recipe.private %></div>
-        <div>Created by user ID: <%= recipe.createdByUserId %></div>
-        <div>Created at: <%= recipe.createdAt %></div>
-        <div>Updated at: <%= recipe.updatedAt %></div>
-        <br>
-        <div>Review:</div>
-        <div>
-            <!-- <a href="">Add Review</a> -->
-            "/recipes/<%= recipe.id %>/reviews"
-            <form action="/recipes/<%= recipe.id %>/reviews" method="POST" class="col s12">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <textarea name="content" id="content" class="materialize-textarea" data-length="500"></textarea>
-                        <label for="content">Content: </label>
+<div class="row  blue-grey lighten-2">
+    <%- include('../partials/sidenav') %>
+    <div id="users" class="col s10 blue lighten-4">
+        <div class="row">
+            <div class="input-field col s6">
+                <a class="waves-effect waves-light btn-medium" href="/user/recipes">
+                    <!-- <i class="material-icons" >arrow_back</i> -->
+                    <div class="valign-wrapper">
+                        <i class="material-icons" >arrow_back</i>&nbsp Back to My Recipes
                     </div>
-                </div>
-                <div class="row">
-                    <!-- <div class="input-field col s6">
-                        <input placeholder="5" id="rating" type="text" class="validate"><span>min: 1 - max: 5</span>
-                        <label for="rating">Rating: </label>
-                        
-                        <textarea name="rating" id="rating" class="materialize-textarea" data-length="500"></textarea>
-                        <label for="rating">Rating: </label>
-                    </div> -->
-                    <div class="input-field col s5">
-                        <select name="rating">
-                          <option value="" disabled selected>Choose your rating</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> 
-                        <label>Rating: </label>
-                        <!-- <span class="red-text">* required</span> -->
-                    </div>
-                </div>
-                <div class="row">
-                    <p>
-                        <label>
-                          <input name="liked" type="checkbox" class="filled-in" />
-                          <!--checked="checked"-->
-                          <span>Liked</span>
-                        </label>
-                    </p>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6">  
-                        <p></p>
-                        <input type="submit" value="Add Review">
-                    </div>
-                </div>
-            </form>
+                </a>
+            </div>
+            <div class="input-field col s6">
+                <a class="btn-small waves-effect waves-light right-align" href="/recipes/<%= recipe.id %>/edit">Edit this recipe</a>
+                <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST" class="waves-effect">
+                    <button class="btn-small waves-effect waves-light red">
+                        Delete this recipe
+                    </button>
+                </form>
+                <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" href="">delete_forever</i></a> -->
+
+            </div>
         </div>
-        <div>
-            <% if(!reviews.length) { %>
-                <div>No review yet</div>
-            <% } else { %>
-                <%- reviews.map(r => 
-                    `<div>${r.content}</div><div>${r.rating}</div><div>${r.liked}</div><div>${r.recipeId}</div><div>${r.createdByUserId}</div>`
-                ).join('') %>
-            <% } %>
+        <div class="row">
+            
+            <div class="input-field col s6">
+                <h5 class="blue-text text-darken-2"><%= recipe.title %></h5>
+                <h6 class="blue-text text-darken-2"><%= recipe.desc %></h6>       
+                <div><%- `Pictures: ${recipe.pictures} ` %></div>
+                <div>Meals: <%= recipe.meals %></div>
+                <div>Ingredients: <%= recipe.ingredients %></div>
+                <div>Directions: <%= recipe.directions %></div>
+                <div>Servings: <%= recipe.servings %></div>
+                <div>Prep time: <%= Math.floor(recipe.prepTime/60) %> hr <%= recipe.prepTime%60 %> min</div>
+                <div>Cook time: <%= Math.floor(recipe.cookTime/60) %> hr <%= recipe.cookTime%60 %> min  %></div>
+                <div>Private: <%= recipe.private %></div>
+                <div>Created by user ID: <%= recipe.createdByUserId %></div>
+                <div>Created at: <%= recipe.createdAt %></div>
+                <div>Updated at: <%= recipe.updatedAt %></div>
+                <br>
+                <div>Review: (<%= reviews.length %>) </div>
+                <br>
+                <div>
+                    <!-- <a href="">Add Review</a> -->
+                    <!-- "/recipes/%= recipe.id %>/reviews"<br> -->
+                    <!-- %= typeof recipe.createdByUserId %><br> -->
+                    <!-- %= typeof user.id %><br> -->
+                    <!-- %= recipe.createdByUserId == user.id %><br> -->
+        
+                    <!-- % console.log(reviews[0]["recipeId"]) %> -->
+                    <!-- % console.log(reviews.find(rev => rev.recipeId == user.id )) %> -->
+                    
+                    <!-- %- reviews.find(rev => rev["createdByUserId"] == user.id ) %> -->
+                    
+                    <!-- -->
+                    <% if(!userReview) { %>
+                        <%- `<div>You do not have review on this recipe yet.  <br>Leave one, and share your experience!</div>` %>
+                        <form action="/recipes/<%= recipe.id %>/reviews" method="POST" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <textarea name="content" id="content" class="materialize-textarea" data-length="500"></textarea>
+                                    <label for="content">Content: </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="input-field col s6">
+                                    <input placeholder="5" id="rating" type="text" class="validate"><span>min: 1 - max: 5</span>
+                                    <label for="rating">Rating: </label>
+                                    
+                                    <textarea name="rating" id="rating" class="materialize-textarea" data-length="500"></textarea>
+                                    <label for="rating">Rating: </label>
+                                </div> -->
+                                <div class="input-field col s5">
+                                    <select name="rating">
+                                      <option value="" disabled selected>Choose your rating</option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                    </select> 
+                                    <label>Rating: </label>
+                                    <!-- <span class="red-text">* required</span> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p>
+                                    <label>
+                                      <input name="liked" type="checkbox" class="filled-in" />
+                                      <!--checked="checked"-->
+                                      <span>Liked</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <p></p>
+                                    <input type="submit" value="Add Review" class="waves-effect waves-light btn-small cyan">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <% } else {%>
+                        <div> Your review</div>
+                        
+                        <a class="btn-small waves-effect waves-light" href="/recipes/<%= recipe.id %>/reviews/<%= userReview.id %>/edit">Edit my review</a>
+        
+                        <form action="/recipes/<%= recipe.id %>/reviews/<%= userReview.id %>?_method=DELETE" method="POST" class="waves-effect">
+                            <button class="waves-effect waves-light btn-small red">
+                                <!-- <button class="btn-floating btn-large waves-effect waves-light red"> -->
+                                Delete my review
+                                <!-- <i class="material-icons">delete</i> -->
+                            </button>
+                        </form>
+                        <%- `
+                        <div>Content: ${userReview.content}</div>
+                        <div>Rating: ${userReview.rating}</div>
+                        <div>Liked: ${userReview.liked}</div>
+                        <div>Recipe Id: ${userReview.recipeId}</div>
+                        <div>Created by user ID: ${userReview.createdByUserId}</div>
+                        <br>`
+                        %>
+                    <% } %>
+                <div>
+                    <!-- % if(!reviews.length) { %> -->
+                        <!-- <div>No review yet</div> -->
+                    <!-- % } else if (!otherReviews.length) { %> -->
+                        <!-- % console.log(`Inside view-recipes-view-show otherReviews.length is: ${otherReviews}`) %> -->
+                        <!-- <div>No review from other user</div> -->
+                    <!-- % } else { %> -->
+                    <% if(otherReviews.length) { %>
+                        <div>Reviews from other users</div>
+                        <br>
+                        <%- otherReviews.map(r => (r.createdByUserId == user.id) ? `` :
+                            `<div>Content: ${r.content}</div>
+                            <div>Rating: ${r.rating}</div>
+                            <div>Liked: ${r.liked}</div>
+                            <div>Recipe Id: ${r.recipeId}</div>
+                            <div>Created by user ID: ${r.createdByUserId}</div>
+                            <br>`
+                        ).join('') %>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 </div>

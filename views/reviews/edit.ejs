@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="row blue-grey lighten-2">
+    <%- include('../partials/sidenav') %>
+    <div id="users" class="col s10">
+
+        <form action="/recipes/<%= recipe.id %>/reviews/<%= review.id %>?_method=PUT" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea name="content" id="content" class="materialize-textarea" data-length="500"><%= review.content %></textarea>
+                    <label for="content">Content: </label>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="input-field col s6">
+                    <input placeholder="5" id="rating" type="text" class="validate"><span>min: 1 - max: 5</span>
+                    <label for="rating">Rating: </label>
+                    
+                    <textarea name="rating" id="rating" class="materialize-textarea" data-length="500"></textarea>
+                    <label for="rating">Rating: </label>
+                </div> -->
+                <div class="input-field col s5">
+                    <select name="rating">
+                      <option value="" disabled>Choose your rating</option>
+                      <option value="1" <%= (review.rating === 1 ) ? 'selected' : '' %>>1</option>
+                      <option value="2" <%= (review.rating === 2 ) ? 'selected' : '' %>>2</option>
+                      <option value="3" <%= (review.rating === 3 ) ? 'selected' : '' %>>3</option>
+                      <option value="4" <%= (review.rating === 4 ) ? 'selected' : '' %>>4</option>
+                      <option value="5" <%= (review.rating === 5 ) ? 'selected' : '' %>>5</option>
+                    </select> 
+                    <label>Rating: </label>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    <label>
+                      <input name="liked" type="checkbox" class="filled-in" <%= review.liked ? 'checked' : '' %>/>
+                      <span>Liked</span>
+                    </label>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <p></p>
+                    <input type="submit" value="Update Review">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
