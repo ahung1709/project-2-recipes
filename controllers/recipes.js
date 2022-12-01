@@ -14,7 +14,24 @@ module.exports = {
 }
 
 function index(req, res, next) {
-    res.render('recipes/index', {user: req.user})
+    // let recipeViewOnly = true
+
+    if (!req.user) {
+        console.log(req.user)
+        // res.redirect(`/`)
+        Recipe.find({private:false}, function(err, recipes) {
+            res.render('recipes/index', {user: req.user, recipes})
+        })
+    } else {
+        // User.findById(req.user.id, function(err, user) {
+            Recipe.find({private:false}, function(err, recipes) {
+                // createdByUserId:user._id
+                res.render('recipes/index', {user: req.user, recipes})
+                // , user
+                // res.render('recipes/index', {user: req.user})
+            })
+        // })
+    }
 }
 
 function newRecipe(req, res, next) {
@@ -46,24 +63,32 @@ function create(req, res) {
 function show(req, res) {
     // console.log(`inside controllers-recipes-show req.user.id is: ${req.user._id}`)
     // console.log(`inside controllers-recipes-show req.params.id is: ${req.params.id}`)
-    if (!req.user) res.redirect(`/`)
+    
+    // if (!req.user) {
+        // res.redirect(`/`)
+    // }
 
     Recipe.findById(req.params.id, function(err,recipe) {
         console.log(`inside controllers-recipes-show typeof Reviews is: ${typeof Review}`)
         Review.find({recipeId: recipe._id}, function(err, reviews) {
-            // console.log(`inside controllers-recipes-show recipe is: ${recipe}`)
-            console.log(`inside controllers-recipes-show reviews is: ${typeof reviews}`)
-            // reviews.find({createdByUserId: req.user.id}, function(err, review) {
-            console.log(`inside controllers-recipes req.user.id is: ${req.user.id}`)
-            
-            let userReview = reviews.find(rev => rev["createdByUserId"] == req.user.id )
-            let otherReviews = reviews.filter(rev => rev["createdByUserId"] != req.user.id )
-            
-            console.log(`inside controllers-recipes userReview of type ${typeof userReview} is: ${userReview}`)
-            console.log(`inside controllers-recipes otherReviews of type ${typeof otherReviews} is: ${otherReviews}`)
-                // reviews.find(rev => rev["createdByUserId"] == user.id )
-            res.render('recipes/show', {user: req.user, recipe, reviews, userReview, otherReviews})
-            // })
+
+            if (!req.user) {
+                console.log('inside controllers-recipes-show no-user')
+                res.render('recipes/show', {user: req.user, recipe, reviews})
+            } else {
+                // console.log(`inside controllers-recipes-show recipe is: ${recipe}`)
+                // reviews.find({createdByUserId: req.user.id}, function(err, review) {
+                console.log(`inside controllers-recipes-show reviews is: ${typeof reviews}`)
+                console.log(`inside controllers-recipes req.user.id is: ${req.user.id}`)
+                let userReview = reviews.find(rev => rev["createdByUserId"] == req.user.id )
+                let otherReviews = reviews.filter(rev => rev["createdByUserId"] != req.user.id )
+                
+                console.log(`inside controllers-recipes userReview of type ${typeof userReview} is: ${userReview}`)
+                console.log(`inside controllers-recipes otherReviews of type ${typeof otherReviews} is: ${otherReviews}`)
+                    // reviews.find(rev => rev["createdByUserId"] == user.id )
+                res.render('recipes/show', {user: req.user, recipe, reviews, userReview, otherReviews})
+                // })
+            }    
         })
     })
 }

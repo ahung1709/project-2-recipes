@@ -1,36 +1,69 @@
-<!DOCTYPE html>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="row blue-grey lighten-2">
+
+  <%- include('../partials/sidenav') %>
+
+  <div class="col s10 blue lighten-4">
+    
+    <h5 class="blue-text text-darken-2">View All Recipes</h1>
+    <br>
+    <!-- user/%= user.id %>/ -->
+    <br><br><br>
+    <%- recipes.map(r =>
+    `<div class="row">
+      <div class="col s12 m3">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/sample-1.jpg">
+            <span class="card-title">${r.title}</span>
+            <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/${r.id}"><i class="material-icons">pageview</i></a>
+          </div>
+          <div class="card-content">
+            <p>${r.desc}</p>
+          </div>
+        </div>
+      </div>
+    </div>`
+    ).join('')%>          
+    
+  </div>
+</div>
+
+<!-- <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <!-- Google Icon Fonts used by Materialize -->
+    <title>%= title %></title>
+    !-- Google Icon Fonts used by Materialize --
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Materialize CSS Framework -->
+    !-- Materialize CSS Framework --
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- JavaScript for Materialize -->
+    !-- JavaScript for Materialize --
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
-  <body>
+  <body> -->
     <!-- <h1>%= title %></h1> -->
     <!-- <p>Welcome to %= title %></p> -->
 
-    <div class="navbar-fixed">
+    <!-- <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
           <a href="" class="brand-logo left">SEI Student Fun Facts</a>
-          <!-- Add login UI here -->
+          !-- Add login UI here --
           <ul class="right">
             <li>
-              <% if (user) { %>
+              % if (user) { %>
                 <a href="/logout">
                   <i class="material-icons left">trending_flat</i>
                   Log Out
                 </a>
-              <% } else { %>
+              % } else { %>
                   <a href="/auth/google">
                     <i class="material-icons left">vpn_key</i>
                   </a>
-              <% } %>
+              % } %
             </li>
           </ul>
         </div>
@@ -41,9 +74,9 @@
         <h2 class="col s4 blue-grey-text text-darken-2">Students</h2>
         <form action="/students" method="GET">
           <div class="col s3 offset-s3">
-            <!-- search -->
+            !-- search --
             <div class="input-field">
-              <input id="search" type="search" name="name" placeholder="search name" value="<%= name %>" autocomplete="off">
+              <input id="search" type="search" name="name" placeholder="search name" value="%= name %>" autocomplete="off">
               <i class="material-icons">close</i>
             </div>
           </div>
@@ -51,14 +84,14 @@
             <p>
               <label for="sort-cohort">
                 <input name="sort" type="radio" id="sort-cohort" value="cohort" class="with-gap"
-                  <%= sortKey === 'cohort' ? 'checked' : '' %> >
+                  %= sortKey === 'cohort' ? 'checked' : '' %> >
                 <span>Sort by Cohort</span>
               </label>
             </p>
             <p>
               <label for="sort-name">
                 <input name="sort" type="radio" id="sort-name" value="name" class="with-gap"
-                  <%= sortKey === 'name' ? 'checked' : '' %> >
+                  %= sortKey === 'name' ? 'checked' : '' %> >
                 <span>Sort by Name</span>
               </label>
             </p>
@@ -67,35 +100,37 @@
       </div>
       <div class="row">
         <div id="students" class="col s12">
-          <% students.forEach(function(student) { %>
+          % students.forEach(function(student) { %>
             <div class="card blue-grey">
               <div class="card-content white-text">
                 <div>
                   <span class="card-title">
                     <i class="small material-icons">perm_identity</i>
-                    <span class="student-name"><%= student.name %></span>
-                    <% if (student.cohort) { %><span class="badge white">SEI <%= student.cohort %></span><% } %>
+                    <span class="student-name">%= student.name %></span>
+                    % if (student.cohort) { %><span class="badge white">SEI %= student.cohort %></span>% } %>
                   </span>
                 </div>
                 <ul class="collection">
-                  <% student.facts.forEach(function(fact) { %>
-                    <li class="collection-item blue-grey-text text-darken-2"><%- fact.text %></li>
-                  <% }) %>
+                  % student.facts.forEach(function(fact) { %>
+                    <li class="collection-item blue-grey-text text-darken-2">%- fact.text %></li>
+                  % }) %>
                 </ul>
-                <!-- Add Dynamic UI form below this line -->
-                <% if (student._id.equals(user && user._id)) { %>
+                !-- Add Dynamic UI form below this line --
+                % if (student._id.equals(user && user._id)) { %>
                   <div class="card-action">
                     <form action="/facts" method="POST">
                       <input type="text" name="text" class="white-text">
                       <button type="submit" class="btn white-text">Add Fact</button>
                     </form>
                   </div>
-                <% } %>  
+                % } %>  
               </div>
             </div>
-          <% }) %>
+          % }) %>
         </div>
       </div>
     </div>
   </body>
-</html>
+</html> -->
+
+<%- include('../partials/footer') %>

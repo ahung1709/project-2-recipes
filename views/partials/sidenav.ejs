@@ -1,16 +1,20 @@
 
     <div id="users" class="col s2">
-        <% if (user) { %>
-        <h5><%= user.name %></h5>
-        <h6><%= user.id %></h5>
-        <ul class="collection">
-            <li class="collection-item"><a href="/user/">Dashboard</a></li>
-            <li class="collection-item"><a href="">Profile</a></li>
-            <li class="collection-item"><a href="">Collection</a></li>
-            <li class="collection-item"><a href="/user/recipes">My Recipes</a></li>
-            <!-- /%= user.id %> -->
-            <!-- %= user.id%>/ -->
-            <li class="collection-item"><a href="">Comments</a></li>
-        </ul>
+        <% if (!user) { %>
+            <a href="/recipes"><h5 class="white">View All Recipes</h5></a>
+            <h5>Login for additional functionality</h5>
+            <!-- recipeViewOnly -->
+        <% } else { %>
+            <h5><%= user.name %></h5>
+            <h6><%= user.id %></h6>
+            <ul class="collection">
+                <li class="collection-item"><a href="/user/">Dashboard</a></li>
+                <!-- <li class="collection-item"><a href="">Profile</a></li> -->
+                <!-- <li class="collection-item"><a href="">Collection</a></li> -->
+                <li class="collection-item"><a href="/user/recipes">My Recipes</a></li>
+                <!-- /%= user.id %> -->
+                <!-- %= user.id%>/ -->
+                <li class="collection-item"><a href="">Comments</a></li>
+            </ul>
         <% } %>
     </div>

@@ -3,8 +3,20 @@
 
 <div class="row blue-grey lighten-2">
     <%- include('../partials/sidenav') %>
-    <div id="users" class="col s10">
-
+    <div id="users" class="col s10 blue lighten-4">
+        <div class="row">
+            <div class="input-field col s6">
+                <a class="waves-effect waves-light btn-medium" href="/recipes/<%= recipe.id %>">
+                    <!-- <i class="material-icons" >arrow_back</i> -->
+                    <div class="valign-wrapper">
+                        <i class="material-icons" >arrow_back</i>&nbsp Back to Recipe
+                    </div>
+                </a>
+                <h5 class="blue-text text-darken-2">Edit Review</h1>
+            </div>
+        </div>
+    </div>
+    <div id="users" class="col s10 blue lighten-4">
         <form action="/recipes/<%= recipe.id %>/reviews/<%= review.id %>?_method=PUT" method="POST" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
@@ -20,7 +32,7 @@
                     <textarea name="rating" id="rating" class="materialize-textarea" data-length="500"></textarea>
                     <label for="rating">Rating: </label>
                 </div> -->
-                <div class="input-field col s5">
+                <div class="input-field col s6">
                     <select name="rating">
                       <option value="" disabled>Choose your rating</option>
                       <option value="1" <%= (review.rating === 1 ) ? 'selected' : '' %>>1</option>
@@ -33,17 +45,17 @@
                 </div>
             </div>
             <div class="row">
-                <p>
+                <div class="input-field col s6">
                     <label>
                       <input name="liked" type="checkbox" class="filled-in" <%= review.liked ? 'checked' : '' %>/>
                       <span>Liked</span>
                     </label>
-                </p>
+                </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <p></p>
-                    <input type="submit" value="Update Review">
+                    <input type="submit" value="Update Review" class="waves-effect waves-light btn-small cyan">
                 </div>
             </div>
         </form>
