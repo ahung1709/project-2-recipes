@@ -1,15 +1,15 @@
 # Project 2
 
-### Recipes App
+### The Recipes App
 #### Description and background of the app
-* This Recipes App is a recipe-focused online social networking service.
+* The Recipes App is a recipe-focused online social networking service.
 * It lets users create their own recipes, share them to other users, leave reviews on each other's recipes.
 
 ### Screenshots
-#### Screenshot #1 - Before login
+#### Screenshot #1 - Landing page before login
 ![Screenshot #1]()
 
-#### Screenshot #2 - After login
+#### Screenshot #2 - Landing page after login
 ![Screenshot #2]()
 
 #### Screenshot #3 - View all public recipes
@@ -39,6 +39,7 @@
 
 ### Getting Started
 #### Click on the following link to access the Recipes app
+* [Trello board - project planning](https://trello.com/b/yHaz8yTe/sei56-project-2-planning)
 * [Project 2 - Site](https://project-2-recipes-production.up.railway.app/)
 
 ### Next Steps
