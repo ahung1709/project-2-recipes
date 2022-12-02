@@ -7,13 +7,13 @@
 
 ### Screenshots
 #### Screenshot #1 - Landing page before login
-![Screenshot #1]()
+![Screenshot #1](https://i.imgur.com/CSyI4kv.png)
 
 #### Screenshot #2 - Landing page after login
-![Screenshot #2]()
+![Screenshot #2](https://i.imgur.com/2OlwmFL.png)
 
 #### Screenshot #3 - View all public recipes
-![Screenshot #3]()
+![Screenshot #3](https://i.imgur.com/9GOVNOi.png)
 
 #### Screenshot #4 - View a particular recipe
 ![Screenshot #4](https://i.imgur.com/tExhefJ.png)
