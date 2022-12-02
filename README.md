@@ -16,7 +16,7 @@
 ![Screenshot #3]()
 
 #### Screenshot #4 - View a particular recipe
-![Screenshot #4]()
+![Screenshot #4](https://i.imgur.com/tExhefJ.png)
 
 ### Technologies Used
 * Web languages
