@@ -10,6 +10,5 @@ router.post('/recipes/:id/reviews', reviewsCtrl.create)
 router.put('/recipes/:recId/reviews/:revId', reviewsCtrl.update)
 
 router.delete('/recipes/:recId/reviews/:revId', reviewsCtrl.delete)
-// recipes/<%= recipe.id %>/reviews/<%= userReview.id %>
 
 module.exports = router;

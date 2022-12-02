@@ -5,23 +5,8 @@ var router = require('express').Router();
 const passport = require('passport')
 const indexesCtrl = require('../controllers/indexes')
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
 // route to index controller
 router.get('/', indexesCtrl.index)
-
-// index view
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Recipers'})
-// })
-
-// The root route renders our only view
-// router.get('/', function(req, res) {
-//   res.redirect('/index');
-// })
 
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(

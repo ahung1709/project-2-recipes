@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// mongoose.connect(, {"mongodb+srv://sei_rocks_1:<password>@cluster0.vi1st2j.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(process.env.DATABASE_URL, 
     {
     useNewUrlParser: true, 

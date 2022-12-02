@@ -48,10 +48,7 @@ app.use(passport.session())
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter)
 app.use('/', reviewsRouter)
-// app.use('/users', usersRouter);
 app.use('/user', usersRouter);
-// app.use('/users/recipes', )
-// app.use('/user/:id/recipes', recipesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

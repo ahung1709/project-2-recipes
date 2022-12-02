@@ -8,12 +8,10 @@
     <div id="users" class="col s10 blue lighten-4">
         <% if(!user || recipe.createdByUserId != user.id) { %>
             <!-- No button for edit or delete if there is no user or the recipe is not owned by the user -->
-            <!-- recipeViewOnly -->
         <% } else { %><!-- The recipe is owned by the user, so it can be edited or deleted -->
                 <div class="row">
                     <div class="input-field col s6">
                         <a class="waves-effect waves-light btn-medium" href="/user/recipes">
-                            <!-- <i class="material-icons" >arrow_back</i> -->
                             <div class="valign-wrapper">
                                 <i class="material-icons" >arrow_back</i>&nbsp Back to My Recipes
                             </div>
@@ -26,13 +24,10 @@
                                 Delete this recipe
                             </button>
                         </form>
-                        <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" href="">delete_forever</i></a> -->
         
                     </div>
                 </div>
         <% } %>
-
-        <!-- % } %> -->
                 
         <div class="row">
             
@@ -55,26 +50,8 @@
                 <div>Review: (<%= reviews.length %>) </div>
                 <br>
                 <div>
-                    <!-- <a href="">Add Review</a> -->
-                    <!-- "/recipes/%= recipe.id %>/reviews"<br> -->
-                    <!-- %= typeof recipe.createdByUserId %><br> -->
-                    <!-- %= typeof user.id %><br> -->
-                    <!-- %= recipe.createdByUserId == user.id %><br> -->
-        
-                    <!-- % console.log(reviews[0]["recipeId"]) %> -->
-                    <!-- % console.log(reviews.find(rev => rev.recipeId == user.id )) %> -->
-                    
-                    <!-- %- reviews.find(rev => rev["createdByUserId"] == user.id ) %> -->
-                    
-                    <!-- -->
                     <% if(!user || recipe.createdByUserId == user.id) { %>
                         <div>
-                            <!-- % if(!reviews.length) { %> -->
-                                <!-- <div>No review yet</div> -->
-                            <!-- % } else if (!otherReviews.length) { %> -->
-                                <!-- % console.log(`Inside view-recipes-view-show otherReviews.length is: ${otherReviews}`) %> -->
-                                <!-- <div>No review from other user</div> -->
-                            <!-- % } else { %> -->
                             <% if(reviews.length) { %>
                                 <%- reviews.map(r => 
                                     `<div>Content: ${r.content}</div>
@@ -99,13 +76,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <!-- <div class="input-field col s6">
-                                        <input placeholder="5" id="rating" type="text" class="validate"><span>min: 1 - max: 5</span>
-                                        <label for="rating">Rating: </label>
-                                        
-                                        <textarea name="rating" id="rating" class="materialize-textarea" data-length="500"></textarea>
-                                        <label for="rating">Rating: </label>
-                                    </div> -->
                                     <div class="input-field col s5">
                                         <select name="rating">
                                           <option value="" disabled selected>Choose your rating</option>
@@ -116,14 +86,12 @@
                                           <option value="5">5</option>
                                         </select> 
                                         <label>Rating: </label>
-                                        <!-- <span class="red-text">* required</span> -->
                                     </div>
                                 </div>
                                 <div class="row">
                                     <p>
                                         <label>
                                           <input name="liked" type="checkbox" class="filled-in" />
-                                          <!--checked="checked"-->
                                           <span>Liked</span>
                                         </label>
                                     </p>
@@ -143,9 +111,7 @@
             
                             <form action="/recipes/<%= recipe.id %>/reviews/<%= userReview.id %>?_method=DELETE" method="POST" class="waves-effect">
                                 <button class="waves-effect waves-light btn-small red">
-                                    <!-- <button class="btn-floating btn-large waves-effect waves-light red"> -->
                                     Delete my review
-                                    <!-- <i class="material-icons">delete</i> -->
                                 </button>
                             </form>
                             <%- `
@@ -159,12 +125,6 @@
                         <% } %>
 
                         <div>
-                            <!-- % if(!reviews.length) { %> -->
-                                <!-- <div>No review yet</div> -->
-                            <!-- % } else if (!otherReviews.length) { %> -->
-                                <!-- % console.log(`Inside view-recipes-view-show otherReviews.length is: ${otherReviews}`) %> -->
-                                <!-- <div>No review from other user</div> -->
-                            <!-- % } else { %> -->
                             <% if(otherReviews.length) { %>
                                 <div>Reviews from other users</div>
                                 <br>
@@ -178,9 +138,7 @@
                                 ).join('') %>
                             <% } %>
                         </div>
-
                     <% } %>
-                
             </div>
         </div>
     </div>

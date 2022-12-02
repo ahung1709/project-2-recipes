@@ -19,25 +19,13 @@ function index(req, res, next) {
         console.log(`Before running if (err)`)
         if (err) return next(err);
         // Passing search values, name & sortKey, for use in the EJS
-        console.log(`Before running res.render('users/index')`)
-        console.log(`req.user is: ${req.user} ; !req.user is: ${!req.user}`)
         let objVariables = {
             users, 
             user: req.user, 
             name: req.query.name, 
             sortKey
         }
-        console.log(`objVariables is: ${objVariables}`)
-        // if (!req.user) {
-        //     res.redirect(`/`);
-        // }
         res.render('index', 
-        // {
-            // users, 
-            // user: req.user, 
-            // name: req.query.name, 
-            // sortKey
-        // }
             objVariables
         )
     })
