@@ -1,5 +1,5 @@
 
-console.log(`Connected pursue.js`)
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
